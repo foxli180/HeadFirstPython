@@ -1,7 +1,7 @@
 """
 This can print all the intem in the list or in the list of list
 """
-def print_lol(the_list,level):
+def print_lol(the_list,level=0):
      """
      method 2, printtab is a bool value, if it is ture,in each sub list, it will print
      a TAB 

@@ -6,3 +6,5 @@ movies = [
 
 print_lol(movies)
 print_lol(movies,0)
+print_lol(movies,True,0)
+print_lol(movies,True,-2)

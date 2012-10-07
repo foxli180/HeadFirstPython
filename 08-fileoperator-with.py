@@ -1,4 +1,3 @@
-#1.Create a list: man
 #2.Create a list: other
 #3.Delete unnessary blank in line_spoken
 #4.Add line_spoken to diff list via roles
@@ -22,22 +21,18 @@ try:
 except IOError:
     print('The data file is missing!')
 
-try: # 将 man 和other 分别写入文件
-    out_man = open('man_data.txt','w')
-    out_other = open('other_data.txt','w')
-    print(man,file=out_man)
-    print(other,file=out_other) #注意,如果这里出现了异常的话,文件无法正常关闭!引入 finally
-    #out_man.close() 
-    #out_other.close()
-except IOError:
-    print('Can not write to file')
+try:
+    with open('man_data3.txt','w') as out_man:
+        print(man,file=out_man)
+    with open('other_data3.txt') as out_other:
+        print(other,file=out_other)
+except IOError as err:
+    print('File Error: '+str(err))
 
-finally:#确保无论发生了什么都关文件,无论是否有运行时错误
-    if 'out_man' in locals():
-        out_man.close()
-    if 'out_other' in locals():
-        out_other.close()
 
-    
-            
-            
+try:
+    with open('man_data3.txt','w') as out_man,open('other_data3.txt') as out_other:
+        print(man, file=out_man)
+        print(other,file=out_other)
+except IOError as err:
+    print('File Error: '+str(err))    

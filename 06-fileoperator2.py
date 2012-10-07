@@ -21,10 +21,18 @@ try:
     data.close()#关闭I/O
 except IOError:
     print('The data file is missing!')
-print(man)
-print('\n')
-print(other)
-        
+
+try: # 将 man 和other 分别写入文件
+    out_man = open('man_data.txt','w')
+    out_other = open('other_data.txt','w')
+    print(man,file=out_man)
+    print(other,file=out_other)
+    out_man.close()
+    out_other.close()
+except IOError:
+    print('Can not write to file')
+    
+
     
             
             

@@ -1,4 +1,7 @@
 import nester
 cast = ['Palin','Cleese','Idle','Jone','Gilliam']
-
-nester.print_lol(cast)
+try:
+     with open ('test.txt','w') as out1:
+          nester.print_lol(cast,fh = out1)
+except IOError as err:
+     print('Error: '+str(err))

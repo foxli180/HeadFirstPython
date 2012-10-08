@@ -2,12 +2,12 @@ from distutils.core import setup
 
 setup (
      name         = 'nester',
-     version      = '1.3.0',
+     version      = '1.5.2',
      py_modules   = ['nester'],
      author       = 'Fox',
-     author_email ='a@b.com',
+     author_email = 'a@b.com',
      url          = 'http://www.baidu.com',
-     discription  = 'a simple printer of nested lists',
+     description  = 'a simple printer of nested lists',
      )
      
      

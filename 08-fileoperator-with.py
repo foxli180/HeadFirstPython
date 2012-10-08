@@ -2,7 +2,7 @@
 #3.Delete unnessary blank in line_spoken
 #4.Add line_spoken to diff list via roles
 #5.Print man and other
-
+from nester import print_lol
 man = []
 other = []
 try:
@@ -23,16 +23,16 @@ except IOError:
 
 try:
     with open('man_data3.txt','w') as out_man:
-        print(man,file=out_man)
-    with open('other_data3.txt') as out_other:
-        print(other,file=out_other)
+        print_lol(man,fh=out_man)
+    with open('other_data3.txt','w') as out_other:
+        print_lol(other,fh=out_other)
 except IOError as err:
     print('File Error: '+str(err))
 
 
 try:
-    with open('man_data3.txt','w') as out_man,open('other_data3.txt') as out_other:
-        print(man, file=out_man)
-        print(other,file=out_other)
+    with open('man_data3.txt','w') as out_man,open('other_data3.txt','w') as out_other:
+        print_lol(man, fh=out_man)
+        print_lol(other,fh=out_other)
 except IOError as err:
     print('File Error: '+str(err))    

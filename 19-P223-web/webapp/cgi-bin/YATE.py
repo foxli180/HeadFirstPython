@@ -17,8 +17,7 @@ def include_footer(the_links):
           foot_text = footf.read()
      link_string = ''
      for key in the_links:
-          link_string += '<a href="'+the_links[key]+'">'+key
-          +'</a>&nbsp;&nbsp;&nbsp;&nbsp;'
+          link_string += '<a href="'+the_links[key]+'">'+key+'</a>&nbsp;&nbsp;&nbsp;&nbsp;'
      footer = Template(foot_text)
      return(footer.substitute(links=link_string))
 #使用一个字符串作为参数,来创建一个 html 页面的尾部,页面本身存于 footer.html 中,
@@ -42,7 +41,7 @@ def radio_button(rb_name,rb_value):
 def u_list(items):
      u_string = '<ul>'
      for item in items:
-          ustring += '<li>' +item +'</li>'
+          u_string += '<li>' +item +'</li>'
      u_string += '</ul>'
      return(u_string)
 # 给定一个项列表,将其转化为一个html 列表,每次迭代会像ul增加一个li元素

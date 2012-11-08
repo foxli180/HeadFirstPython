@@ -7,7 +7,7 @@ class AthleteList(list): #新的AthleteList 类,继承了原有的list类,包含
      @property
      def top3(self):
           return(sorted(set([sanitize(t) for t in self]))[0:3])
-     @property
+     @property #标准 JSON 只能处理Python 内置类型,不能处理 AthleteList 对象,所以将数据转化为字典
      def as_dict(self):
           return({'Name':self.name,
                   'DOB':self.dob,

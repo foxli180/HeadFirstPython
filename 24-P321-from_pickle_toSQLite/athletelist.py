@@ -7,6 +7,10 @@ class AthleteList(list): #新的AthleteList 类,继承了原有的list类,包含
      @property
      def top3(self):
           return(sorted(set([sanitize(t) for t in self]))[0:3])
+     @property
+     def clean_data(self):
+          return(sorted(set([sanitize(t) for t in self])))
+     
           
 def sanitize(time_string): #序列化得到的无规则数据,将其格式化为 mins.secs 的格式
      if '-' in time_string:

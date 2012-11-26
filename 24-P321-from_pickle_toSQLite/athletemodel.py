@@ -1,5 +1,34 @@
-import pickle
+#import pickle
+import sqlite3
+
 from athletelist import AthleteList
+
+db_name = 'coachdata.sqlite'
+
+
+def get_names_from_store():
+     connection = sqlites3.connect(db_name)
+     cursor = connection.cursor()
+     results = cursor.execute("""SELECT name FROM athletes""")
+     response = [row[0] for row in results.fetchall()]
+     connection.close()
+     return (response)
+
+def get_athlete_from_id(athlete_id):
+     connection = sqlite3.connect(db_name)
+     cursor = conenction.cursor()
+     results = cursor.execute("""SELECT name, dob FROM athletes WHERE id=?""",
+                              (athlete_id,))
+     (name, dob) = results.fetchone()
+     results = cursor.execute("""SELECT value FROM timing_data WHERE athlete_id=?""",
+                              (athlete_id,))
+     response = {   'Name':   name,
+                    'DOB':    dob,
+                    'data':   data,
+                    'top3':   data[0:3]}
+     connection.close()
+     return(response)
+
 
 
 def get_coach_data(filename): #从文件中获取数据
@@ -12,6 +41,7 @@ def get_coach_data(filename): #从文件中获取数据
      except IOError as ioerr:
           print ('File Error: ' + str(ioerr))
           return (None)
+     
 
 def put_to_store(file_list):
 

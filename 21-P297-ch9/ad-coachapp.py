@@ -33,7 +33,10 @@ def status_update(msg, how_long = 2 ):
 
 status_update(hello_msg)
 
-athlete_names = sorted (json.loads(send_to_server(web_server + get_name_cgi)))
+#athlete_names = sorted (json.loads(send_to_server(web_server + get_name_cgi)))
+athletes = sorted (json.loads(send_to_server(web_server + get_name_cgi)))
+athlete_names = [ath[0] for ath in athlletes]
+
 app.dialogCreateAlert(list_title)
 app.dialogSetSingleChoiceItems(athlete_names)
 app.dialogSetPositiveButtonText('Select')
@@ -44,13 +47,31 @@ resp = app.dialogGetResponse().result
 
 if resp['which'] in ('positive'):
      selected_athlete = app.dialogGetSelectedItems().result[0]
-     which_athlete = athlete_names[selected_athlete]
+     #which_athlete = athlete_names[selected_athlete]
+     which_athlete = athletes[selected_athlete][1]#确定选手关联的id
      athlete = json.loads(send_to_server(web_server + get_data_cgi,{'which_athlete': which_athlete}))
      athlete_title = athlete['Name'] + '(' + athlete['DOB'] + '), top 3 times:'
      app.dialogCreateAlert(athlete_title)
-     app.dialogSetItems(athlete['Top3'])
+     #app.dialogSetItems(athlete['Top3'])
+     app.dialogSetItems(athlete['top3'])
      app.dialogSetPositiveButtonText('OK')
+     
+     app.dialogSetNegativeButtonText('Add Time')
+     
      app.dialogShow()
      resp = app.dialogGetResponse().result
+
+     if resp['which'] in ('positive'):
+          pass
+     elif respp['which'] in ('negative'):
+          timing_title = 'Enter new time'
+          timing_msg = 'Provide a new timing value '+ athlete['Name']+': '
+          add_time_cgi = '/cgi-bin/add_timing_data.py'
+
+          resp = app.dialogGetInput(timing_tilte,timing_msg).result
+
+          if resp is not None:
+               new_time = resp
+               send_to_server(web_server+add_time_cgi,{'Time':new_time,'Athlete':which_athlete})
      
 status_update(quit_msg)

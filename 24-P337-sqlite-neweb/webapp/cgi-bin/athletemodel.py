@@ -16,12 +16,14 @@ def get_names_from_store():
 
 def get_athlete_from_id(athlete_id):
      connection = sqlite3.connect(db_name)
-     cursor = conenction.cursor()
+     cursor = connection.cursor()
      results = cursor.execute("""SELECT name, dob FROM athletes WHERE id=?""",
                               (athlete_id,))
      (name, dob) = results.fetchone()
      results = cursor.execute("""SELECT value FROM timing_data WHERE athlete_id=?""",
                               (athlete_id,))
+     data = [row[0] for row in results.fetchall()]
+     
      #从查询结果中得到数据,转化为一个字典
      response = {   'Name':   name,
                     'DOB':    dob,
@@ -42,7 +44,9 @@ def get_namesID_from_store():
 data = get_namesID_from_store()
 print (data)
 print (data[0][0])
+print (data[0][1])
 """
+
 
 ##########sqlite模型
 
